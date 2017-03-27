@@ -340,6 +340,15 @@ Creep.prototype.spawnReplacement = function(maxOfRole) {
             return false;
           }
         });
+
+        for (let spawn in Game.rooms[this.memory.base].findPropertyFilter(FIND_MY_STRUCTURES, 'structureType', [STRUCTURE_SPAWN])) {
+          let spawning = spawn.spawning;
+          if (!spawning) {
+            continue;
+          }
+          this.log('spawnReplacement: ' + JSON.stringify(spawning));
+        }
+
         if (this.memory.role === 'harvester') {
           this.log(`spawnReplacement: ${creepOfRole.length} ${maxOfRole}`);
         }
