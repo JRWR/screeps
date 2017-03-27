@@ -77,7 +77,6 @@ Room.prototype.buildBase = function() {
     }
   }
 
-
   // version: this.memory.position.version is maybe not the best idea
   if (!this.memory.position || this.memory.position.version != config.layout.version) {
     this.setup();
