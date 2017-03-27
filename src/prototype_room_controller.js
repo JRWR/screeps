@@ -55,26 +55,28 @@ Room.prototype.buildBase = function() {
   if (!this.memory.controllerLevel.checkBlockersInterval) {
     this.memory.controllerLevel.checkBlockersInterval = 1;
   }
-  if (this.memory.controllerLevel.buildStructuresInterval > 1 && this.exectueEveryTicks(this.memory.controllerLevel.checkBlockersInterval)) {
-    if (this.checkBlockers()) {
-      this.memory.controllerLevel.checkBlockersInterval = 1;
-    } else {
-      this.memory.controllerLevel.checkBlockersInterval++;
-    }
-  }
-
   if (!this.memory.controllerLevel.buildBlockersInterval) {
     this.memory.controllerLevel.buildBlockersInterval = 1;
   }
-  if (this.memory.controllerLevel.buildStructuresInterval > 1 && this.exectueEveryTicks(this.memory.controllerLevel.buildBlockersInterval)) {
-    if (this.controller.level >= 2) {
-      if (this.buildBlockers()) {
-        this.memory.controllerLevel.buildBlockersInterval = 1;
+  if (this.memory.controllerLevel.buildStructuresInterval > 1) {
+    if (this.exectueEveryTicks(this.memory.controllerLevel.checkBlockersInterval)) {
+      if (this.checkBlockers()) {
+        this.memory.controllerLevel.checkBlockersInterval = 1;
       } else {
-        this.memory.controllerLevel.buildBlockersInterval++;
+        this.memory.controllerLevel.checkBlockersInterval++;
+      }
+    }
+    if (this.exectueEveryTicks(this.memory.controllerLevel.buildBlockersInterval)) {
+      if (this.controller.level >= 2) {
+        if (this.buildBlockers()) {
+          this.memory.controllerLevel.buildBlockersInterval = 1;
+        } else {
+          this.memory.controllerLevel.buildBlockersInterval++;
+        }
       }
     }
   }
+
 
   // version: this.memory.position.version is maybe not the best idea
   if (!this.memory.position || this.memory.position.version != config.layout.version) {
