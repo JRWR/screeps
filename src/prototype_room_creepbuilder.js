@@ -66,7 +66,7 @@ Room.prototype.inQueue = function(creepMemory) {
       }
       continue;
     }
-    if (creepMemory.routing.targetId === item.routing.targetId && creepMemory.routing.targetRoom == item.routing.targetRoom) {
+    if (creepMemory.routing.targetId === item.routing.targetId && creepMemory.routing.targetRoom === item.routing.targetRoom) {
       return true;
     }
   }
