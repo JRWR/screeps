@@ -28,7 +28,12 @@ roles.upgrader.settings = {
     7: {
       50000: 20,
       800000: undefined,
+    },
+    8: {
+      50000: 1,
+      800000: undefined,
     }
+
   }
 };
 roles.upgrader.stayInRoom = true;
